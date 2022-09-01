@@ -1,5 +1,5 @@
-import 'package:fic_clientes/app/page/start_menu.dart';
 import 'package:fic_clientes/app/util/responsive.dart';
+import 'package:fic_clientes/data/services.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -10,10 +10,22 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController numCard = TextEditingController();
+  TextEditingController pinCard = TextEditingController();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  Services services = Services();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Responsive responsive = Responsive.of(context);
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
       body: Container(
         padding: const EdgeInsets.only(left: 20, right: 20),
@@ -36,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: responsive.hp(1)),
                 TextFormField(
+                  controller: numCard,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     hintText: "Ingresa últimos 6 dígitos de tarjeta",
@@ -59,13 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  validator: (val) {
-                    // if (val.length == 0) {
-                    //   return "Email cannot be empty";
-                    // } else {
-                    //   return null;
-                    // }
-                  },
                   keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: responsive.hp(5)),
@@ -77,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: responsive.hp(1)),
                 TextFormField(
+                  controller: pinCard,
                   obscureText: true,
                   decoration: InputDecoration(
                     hintText: "PIN de tarjeta",
@@ -100,23 +107,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  validator: (val) {
-                    // if (val.length == 0) {
-                    //   return "Email cannot be empty";
-                    // } else {
-                    //   return null;
-                    // }
-                  },
-                  keyboardType: TextInputType.visiblePassword,
+                  keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: responsive.hp(8)),
                 GestureDetector(
                   onTap: (){
-                    Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (c, a1, a2) => StartMenuScreen(),
-                        ));
+                    if(numCard.text != '' && pinCard.text != ''){
+                      services.loginFic(context, _scaffoldKey, numCard.text, pinCard.text);
+                    }else{
+                      _scaffoldKey.currentState?.showSnackBar(const SnackBar(
+                        content: Text('Ingrese número y pin de tarjeta.'),
+                        backgroundColor: Colors.red,
+                        duration: Duration(seconds: 2),
+                      ));
+                    }
                   },
                   child: Container(
                     width: responsive.width,

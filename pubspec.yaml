@@ -10,6 +10,8 @@ environment:
 
 dependencies:
   splash_screen_view: ^3.0.0
+  dio: ^4.0.6
+  shared_preferences: ^2.0.15
   flutter:
     sdk: flutter
 
