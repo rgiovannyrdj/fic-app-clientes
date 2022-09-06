@@ -70,9 +70,12 @@ class Services {
       );
       if (response.statusCode == 200) {
         if (response.data['exitoso'] == true) {
-          prefs.setString('idTransactionFic', response.data['datos']['id'].toString());
-          prefs.setString('saldoFic', response.data['datos']['saldo'].toString());
-          prefs.setString('dateFic', response.data['datos']['fechaFinVigencia'].toString());
+          prefs.setString(
+              'idTransactionFic', response.data['datos']['id'].toString());
+          prefs.setString(
+              'saldoFic', response.data['datos']['saldo'].toString());
+          prefs.setString(
+              'dateFic', response.data['datos']['fechaFinVigencia'].toString());
           final data = [response.data['datos']];
           return data;
         } else {
@@ -124,23 +127,25 @@ class Services {
   }
 
   @override
-  Future<List?> TransactionFic(scaffoldKey) async {
+  Future<List?> TransactionFic(scaffoldKey, int page) async {
     dio.options.connectTimeout = connectTimeout;
     dio.options.receiveTimeout = receiveTimeout;
     String? idTransactionFic;
     final prefs = await SharedPreferences.getInstance();
     idTransactionFic = prefs.getString('idTransactionFic') ?? '';
+    final data = {"page": page, "size": 8};
     try {
       final response = await dio.post(
-        '$url/cervantino/rest/serviciosFIC/transacciones/$idTransactionFic/cuenta',
+        '$url/cervantino/rest/serviciosFIC/transacciones/$idTransactionFic/cuenta/page',
         options: Options(contentType: 'application/json', headers: {
           "j_username": 'mision_fic',
           "j_password": '12345678',
         }),
+        data: data,
       );
       if (response.statusCode == 200) {
         if (response.data['exitoso'] == true) {
-          List data = response.data['datos'];
+          List data = response.data['datos']['result'];
           return data;
         } else {
           scaffoldKey.currentState?.showSnackBar(SnackBar(

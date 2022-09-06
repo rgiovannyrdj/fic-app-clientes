@@ -24,6 +24,17 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Se requiere su ubicación para obtener mas beneficios.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Se requiere su ubicación para obtener mas beneficios.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Se requiere su ubicación para obtener mas beneficios.</string>
+	<key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>googlechromes</string>
+        <string>comgooglemaps</string>
+    </array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
