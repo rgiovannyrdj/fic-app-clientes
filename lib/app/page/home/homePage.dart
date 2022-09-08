@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageScreen extends StatefulWidget {
-  const HomePageScreen({Key? key}) : super(key: key);
+  HomePageScreen({Key? key}) : super(key: key);
 
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();

@@ -5,7 +5,7 @@ import 'package:fic_clientes/app/widgets/widget.dart';
 import 'package:flutter/material.dart';
 
 class StartMenuScreen extends StatefulWidget {
-  const StartMenuScreen({Key? key}) : super(key: key);
+  StartMenuScreen({Key? key}) : super(key: key);
 
   @override
   State<StartMenuScreen> createState() => _StartMenuScreenState();
