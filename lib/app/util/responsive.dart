@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-class Responsive{
+
+class Responsive {
   double _width = 0;
   double _heigth = 0;
   double _diagonal = 0;
@@ -11,11 +12,11 @@ class Responsive{
 
   static Responsive of(BuildContext context) => Responsive(context);
 
-  Responsive(BuildContext context){
+  Responsive(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     this._width = size.width;
     this._heigth = size.height;
-    this._diagonal = math.sqrt(math.pow(_width, 2)+ math.pow(_heigth, 2));
+    this._diagonal = math.sqrt(math.pow(_width, 2) + math.pow(_heigth, 2));
   }
 
   double wp(double percent) => _width * percent / 100;

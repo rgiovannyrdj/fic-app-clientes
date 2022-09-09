@@ -46,14 +46,14 @@ class _ParticipantsPageScreenState extends State<ParticipantsPageScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: RefreshIndicator(
-          backgroundColor: Color(0XFFB49948),
+          backgroundColor: const Color(0XFFB49948),
           color: Colors.white,
           displacement: 20.0,
           strokeWidth: 2,
           onRefresh: data,
           child: dataParticipants?.length != 0
               ? Container(
-                  padding: EdgeInsets.only(right: 20, left: 20),
+                  padding: const EdgeInsets.only(right: 20, left: 20),
                   child: ListView(
                     children: [
                       SizedBox(
@@ -138,7 +138,7 @@ class _ParticipantsPageScreenState extends State<ParticipantsPageScreen> {
                                                             .externalApplication);
                                                   }
                                                 },
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.location_on,
                                                   color: Color(0XFFB49948),
                                                 ))

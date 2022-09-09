@@ -1,6 +1,5 @@
 import 'package:fic_clientes/app/page/login.dart';
 import 'package:fic_clientes/app/page/start_menu.dart';
-import 'package:fic_clientes/app/util/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
@@ -33,7 +32,6 @@ class SplashScreenn extends StatefulWidget {
 }
 
 class SplashScreennState extends State<SplashScreenn> {
-
   String idUser = "";
 
   loadUser() async {
@@ -52,7 +50,7 @@ class SplashScreennState extends State<SplashScreenn> {
   @override
   Widget build(BuildContext context) {
     return SplashScreenView(
-      navigateRoute: (idUser == '') ?LoginScreen() :StartMenuScreen(),
+      navigateRoute: (idUser == '') ? LoginScreen() : StartMenuScreen(),
       duration: 5000,
       imageSize: 130,
       imageSrc: "assets/icon/logo_fic.png",

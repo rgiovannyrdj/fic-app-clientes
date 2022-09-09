@@ -300,7 +300,7 @@ class _MovementsPageScreenState extends State<MovementsPageScreen> {
                       shrinkWrap: true,
                       children: [
                         Column(
-                          children: [
+                          children: const [
                             CircularProgressIndicator(
                               color: Color(0XFFB49948),
                             )
