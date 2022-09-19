@@ -15,7 +15,7 @@ class _MovementsPageScreenState extends State<MovementsPageScreen> {
   Services services = Services();
   String? saldoFic;
   String? dateFic;
-  List? datatransaction = [];
+  List? datatransaction = ['null'];
   ScrollController? _controller;
   int page = 0;
   bool loading = false;
@@ -85,7 +85,7 @@ class _MovementsPageScreenState extends State<MovementsPageScreen> {
           displacement: 20.0,
           strokeWidth: 2,
           onRefresh: data,
-          child: datatransaction?.length != 0
+          child: datatransaction?.toString() != "[null]"
               ? Container(
                   padding: EdgeInsets.only(right: 20, left: 20),
                   child: Column(
@@ -197,7 +197,7 @@ class _MovementsPageScreenState extends State<MovementsPageScreen> {
                           ],
                         ),
                       ),
-                      Flexible(
+                      datatransaction.toString()!="['null']"?Flexible(
                         child: ListView.builder(
                           controller: _controller,
                           itemCount: datatransaction?.length,
@@ -267,7 +267,7 @@ class _MovementsPageScreenState extends State<MovementsPageScreen> {
                             );
                           },
                         ),
-                      ),
+                      ):Container(),
                       loading != false
                           ? Container(
                               width: responsive.hp(1.7),
