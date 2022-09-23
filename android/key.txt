@@ -1,0 +1,4 @@
+storePassword=ficparticipantes
+keyPassword=ficparticipantes
+keyAlias=ficparticipantes
+storeFile=/Users/jhonvilchezl/ficparticipantes.jks

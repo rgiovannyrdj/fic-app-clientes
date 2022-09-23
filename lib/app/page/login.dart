@@ -12,6 +12,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController numCard = TextEditingController();
   TextEditingController pinCard = TextEditingController();
+  int text1 = 0;
+  int text2 = 0;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   Services services = Services();
 
@@ -90,6 +92,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
+                  onChanged: (value){
+                    text1 = value.length;
+                    setState(() {});
+                  },
                   keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: responsive.hp(5)),
@@ -132,6 +138,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
+                  onChanged: (value){
+                    text2 = value.length;
+                    setState(() {});
+                  },
                   keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: responsive.hp(8)),
@@ -152,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: responsive.width,
                     height: responsive.hp(5.6),
                     decoration: BoxDecoration(
-                      color: Color(0XFFC4C4C4),
+                      color: (text1 != 0 && text2 != 0)?Color(0XFFB49948):Color(0XFFC4C4C4),
                       borderRadius: BorderRadius.circular(2.0),
                     ),
                     child: Column(
