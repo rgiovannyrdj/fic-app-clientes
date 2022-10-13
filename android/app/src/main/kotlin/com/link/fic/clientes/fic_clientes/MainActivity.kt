@@ -1,4 +1,4 @@
-package com.getechnologiesmx.fic.clientes
+package com.getechnologiesmx.link.fic.clientes
 
 import io.flutter.embedding.android.FlutterActivity
 
