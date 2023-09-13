@@ -151,11 +151,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       services.loginFic(
                           context, _scaffoldKey, numCard.text, pinCard.text);
                     } else {
-                      _scaffoldKey.currentState?.showSnackBar(const SnackBar(
-                        content: Text('Ingrese número y pin de tarjeta.'),
+                     ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Por favor, ingresa un número de tarjeta y un PIN.'),
                         backgroundColor: Colors.red,
-                        duration: Duration(seconds: 2),
-                      ));
+                        duration: Duration(seconds: 2
+                        ),
+                      ),
+                    );
                     }
                   },
                   child: Container(
