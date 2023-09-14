@@ -1,7 +1,7 @@
 name: fic_clientes
 description: A new Flutter project.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
@@ -16,6 +16,7 @@ dependencies:
   url_launcher: ^6.1.5
   location: ^4.4.0
   geolocator: ^9.0.1
+  qr_flutter: ^4.1.0
   flutter:
     sdk: flutter
 
@@ -35,10 +36,8 @@ flutter:
     - assets/icon.png
     - assets/icon/
 
-
 flutter_icons:
-  image_path: 'assets/icon.png'
+  image_path: "assets/icon.png"
   android: true
   ios: true
   adaptive_icon_background: "assets/icon.png"
-

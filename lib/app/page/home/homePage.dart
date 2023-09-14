@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:fic_clientes/app/util/responsive.dart';
 import 'package:fic_clientes/data/services.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class HomePageScreen extends StatefulWidget {
   HomePageScreen({Key? key}) : super(key: key);
@@ -200,6 +201,24 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               ),
                             )
                           ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: responsive.hp(1.5),
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Color(0XFFF7F5F4),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Center(
+                          child: QrImageView(
+                            data:
+                                '${dataHome![0]['referencia'].split('_')[0].trim()}',
+                            version: QrVersions.auto,
+                            size: 300.0,
+                          ),
                         ),
                       ),
                       SizedBox(
