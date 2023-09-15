@@ -4,6 +4,7 @@ import 'package:fic_clientes/app/util/responsive.dart';
 import 'package:fic_clientes/data/services.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageScreen extends StatefulWidget {
   HomePageScreen({Key? key}) : super(key: key);
@@ -18,10 +19,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   List? dataHome = [];
   Uint8List? image;
+  String? numCardFic;
 
   Future<void> data() async {
     dataHome = await services.homeFic(_scaffoldKey);
     image = await services.homeImageFic(_scaffoldKey);
+    final prefs = await SharedPreferences.getInstance();
+    numCardFic = prefs.getString('numCardFic') ?? '';
+
     if (mounted) {
       setState(() {});
     }
@@ -214,8 +219,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         ),
                         child: Center(
                           child: QrImageView(
-                            data:
-                                '${dataHome![0]['referencia'].split('_')[0].trim()}',
+                            data: '${numCardFic}',
                             version: QrVersions.auto,
                             size: 300.0,
                           ),
