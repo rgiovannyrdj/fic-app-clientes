@@ -22,8 +22,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
   String? numCardFic;
 
   Future<void> data() async {
-    dataHome = await services.homeFic(_scaffoldKey);
-    image = await services.homeImageFic(_scaffoldKey);
+    dataHome = await services.homeFic(context, _scaffoldKey);
+    image = await services.homeImageFic(context, _scaffoldKey);
     final prefs = await SharedPreferences.getInstance();
     numCardFic = prefs.getString('numCardFic') ?? '';
 

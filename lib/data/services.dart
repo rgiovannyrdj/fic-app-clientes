@@ -54,26 +54,30 @@ class Services {
                       pageBuilder: (c, a1, a2) => StartMenuScreen(),
                     ));
               } else {
-                scaffoldKey.currentState?.showSnackBar(SnackBar(
-                  content: Text(response.data['mensaje']
-                      .toString()
-                      .replaceAll('BusinessException: ', '')),
-                  backgroundColor: Colors.red,
-                  duration: const Duration(seconds: 2),
-                ));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(response.data['mensaje']
+                        .toString()
+                        .replaceAll('BusinessException: ', '')),
+                    backgroundColor: Colors.red,
+                    duration: const Duration(seconds: 2),
+                  ),
+                );
               }
             }
           } catch (err) {
             print(err);
           }
         } else {
-          scaffoldKey.currentState?.showSnackBar(SnackBar(
-            content: Text(response.data['mensaje']
-                .toString()
-                .replaceAll('BusinessException: ', '')),
-            backgroundColor: Colors.red,
-            duration: const Duration(seconds: 2),
-          ));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(response.data['mensaje']
+                  .toString()
+                  .replaceAll('BusinessException: ', '')),
+              backgroundColor: Colors.red,
+              duration: const Duration(seconds: 2),
+            ),
+          );
         }
       }
     } catch (err) {
@@ -82,7 +86,7 @@ class Services {
   }
 
   @override
-  Future<List?> homeFic(scaffoldKey) async {
+  Future<List?> homeFic(BuildContext context, scaffoldKey) async {
     dio.options.connectTimeout = connectTimeout;
     dio.options.receiveTimeout = receiveTimeout;
     String? numCardFic;
@@ -107,13 +111,16 @@ class Services {
           final data = [response.data['datos']];
           return data;
         } else {
-          scaffoldKey.currentState?.showSnackBar(SnackBar(
-            content: Text(response.data['mensaje']
-                .toString()
-                .replaceAll('BusinessException: ', '')),
-            backgroundColor: Colors.red,
-            duration: const Duration(seconds: 2),
-          ));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(response.data['mensaje']
+                  .toString()
+                  .replaceAll('BusinessException: ', '')),
+              backgroundColor: Colors.red,
+              duration: const Duration(seconds: 2),
+            ),
+          );
+
           return [];
         }
       }
@@ -123,7 +130,7 @@ class Services {
   }
 
   @override
-  Future<Uint8List?> homeImageFic(scaffoldKey) async {
+  Future<Uint8List?> homeImageFic(BuildContext context, scaffoldKey) async {
     dio.options.connectTimeout = connectTimeout;
     dio.options.receiveTimeout = receiveTimeout;
     try {
@@ -140,13 +147,15 @@ class Services {
           Uint8List image = base64Decode(bytes);
           return image;
         } else {
-          scaffoldKey.currentState?.showSnackBar(SnackBar(
-            content: Text(response.data['mensaje']
-                .toString()
-                .replaceAll('BusinessException: ', '')),
-            backgroundColor: Colors.red,
-            duration: const Duration(seconds: 2),
-          ));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(response.data['mensaje']
+                  .toString()
+                  .replaceAll('BusinessException: ', '')),
+              backgroundColor: Colors.red,
+              duration: const Duration(seconds: 2),
+            ),
+          );
         }
       }
     } catch (err) {
@@ -155,7 +164,8 @@ class Services {
   }
 
   @override
-  Future<List?> TransactionFic(scaffoldKey, int page) async {
+  Future<List?> TransactionFic(
+      BuildContext context, scaffoldKey, int page) async {
     dio.options.connectTimeout = connectTimeout;
     dio.options.receiveTimeout = receiveTimeout;
     String? idTransactionFic;
@@ -176,13 +186,15 @@ class Services {
           List data = response.data['datos']['result'];
           return data;
         } else {
-          scaffoldKey.currentState?.showSnackBar(SnackBar(
-            content: Text(response.data['mensaje']
-                .toString()
-                .replaceAll('BusinessException: ', '')),
-            backgroundColor: Colors.red,
-            duration: const Duration(seconds: 2),
-          ));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(response.data['mensaje']
+                  .toString()
+                  .replaceAll('BusinessException: ', '')),
+              backgroundColor: Colors.red,
+              duration: const Duration(seconds: 2),
+            ),
+          );
           return [];
         }
       }
@@ -192,7 +204,7 @@ class Services {
   }
 
   @override
-  Future<List?> ParticipantsFic(scaffoldKey) async {
+  Future<List?> ParticipantsFic(BuildContext context, scaffoldKey) async {
     dio.options.connectTimeout = connectTimeout;
     dio.options.receiveTimeout = receiveTimeout;
     try {
@@ -208,13 +220,15 @@ class Services {
           List data = response.data['datos'];
           return data;
         } else {
-          scaffoldKey.currentState?.showSnackBar(SnackBar(
-            content: Text(response.data['mensaje']
-                .toString()
-                .replaceAll('BusinessException: ', '')),
-            backgroundColor: Colors.red,
-            duration: const Duration(seconds: 2),
-          ));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(response.data['mensaje']
+                  .toString()
+                  .replaceAll('BusinessException: ', '')),
+              backgroundColor: Colors.red,
+              duration: const Duration(seconds: 2),
+            ),
+          );
           return [];
         }
       }

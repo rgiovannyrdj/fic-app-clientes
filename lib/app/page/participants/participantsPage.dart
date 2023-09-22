@@ -26,7 +26,7 @@ class _ParticipantsPageScreenState extends State<ParticipantsPageScreen> {
   Location location = Location();
 
   Future<void> data() async {
-    dataParticipants = await services.ParticipantsFic(_scaffoldKey);
+    dataParticipants = await services.ParticipantsFic(context, _scaffoldKey);
     if (mounted) {
       setState(() {});
     }

@@ -25,7 +25,8 @@ class _MovementsPageScreenState extends State<MovementsPageScreen> {
     page = 1;
     final2 = false;
     final prefs = await SharedPreferences.getInstance();
-    datatransaction = await services.TransactionFic(_scaffoldKey, page);
+    datatransaction =
+        await services.TransactionFic(context, _scaffoldKey, page);
     saldoFic = prefs.getString('saldoFic') ?? '';
     dateFic = prefs.getString('dateFic') ?? '';
     if (mounted) {
@@ -43,7 +44,8 @@ class _MovementsPageScreenState extends State<MovementsPageScreen> {
         page = page + 1;
         print(page);
         setState(() {});
-        List? transaction = await services.TransactionFic(_scaffoldKey, page);
+        List? transaction =
+            await services.TransactionFic(context, _scaffoldKey, page);
         if (transaction?.length != 0) {
           datatransaction?.addAll(transaction!);
           loading = false;
@@ -197,77 +199,86 @@ class _MovementsPageScreenState extends State<MovementsPageScreen> {
                           ],
                         ),
                       ),
-                      datatransaction.toString()!="['null']"?Flexible(
-                        child: ListView.builder(
-                          controller: _controller,
-                          itemCount: datatransaction?.length,
-                          itemBuilder: (BuildContext context, int i) {
-                            return Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                        flex: 2,
-                                        child: Image.asset(
-                                            "assets/icon/card.png")),
-                                    Expanded(
-                                        flex: 7,
-                                        child: Container(
-                                          padding: EdgeInsets.only(left: 10),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                  datatransaction?[i]
-                                                      ['asignacion']['nombre'],
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          responsive.dp(1.63),
-                                                      color: Color(0XFF12121D),
-                                                      fontWeight:
-                                                          FontWeight.w400)),
-                                              SizedBox(
-                                                height: responsive.hp(0.5),
-                                              ),
-                                              Text(
-                                                  "${datatransaction?[i]['fecha']} * ${datatransaction?[i]['tipoTransaccion']['descripcion']}",
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          responsive.dp(1.46),
-                                                      color:
-                                                          Color(0XFFB312121D),
-                                                      fontWeight:
-                                                          FontWeight.w400)),
-                                            ],
-                                          ),
-                                        )),
-                                    Expanded(
-                                        flex: 3,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                                "-\$${datatransaction?[i]['monto'].toStringAsFixed(2)}",
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        responsive.dp(1.63),
-                                                    color: Color(0XFFB312121D),
-                                                    fontWeight:
-                                                        FontWeight.w400)),
-                                          ],
-                                        ))
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: responsive.hp(2),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ):Container(),
+                      datatransaction.toString() != "['null']"
+                          ? Flexible(
+                              child: ListView.builder(
+                                controller: _controller,
+                                itemCount: datatransaction?.length,
+                                itemBuilder: (BuildContext context, int i) {
+                                  return Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                              flex: 2,
+                                              child: Image.asset(
+                                                  "assets/icon/card.png")),
+                                          Expanded(
+                                              flex: 7,
+                                              child: Container(
+                                                padding:
+                                                    EdgeInsets.only(left: 10),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                        datatransaction?[i]
+                                                                ['asignacion']
+                                                            ['nombre'],
+                                                        style: TextStyle(
+                                                            fontSize: responsive
+                                                                .dp(1.63),
+                                                            color: Color(
+                                                                0XFF12121D),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400)),
+                                                    SizedBox(
+                                                      height:
+                                                          responsive.hp(0.5),
+                                                    ),
+                                                    Text(
+                                                        "${datatransaction?[i]['fecha']} * ${datatransaction?[i]['tipoTransaccion']['descripcion']}",
+                                                        style: TextStyle(
+                                                            fontSize: responsive
+                                                                .dp(1.46),
+                                                            color: Color(
+                                                                0XFFB312121D),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400)),
+                                                  ],
+                                                ),
+                                              )),
+                                          Expanded(
+                                              flex: 3,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                      "-\$${datatransaction?[i]['monto'].toStringAsFixed(2)}",
+                                                      style: TextStyle(
+                                                          fontSize: responsive
+                                                              .dp(1.63),
+                                                          color: Color(
+                                                              0XFFB312121D),
+                                                          fontWeight:
+                                                              FontWeight.w400)),
+                                                ],
+                                              ))
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: responsive.hp(2),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            )
+                          : Container(),
                       loading != false
                           ? Container(
                               width: responsive.hp(1.7),
