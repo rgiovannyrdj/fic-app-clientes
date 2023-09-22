@@ -1,6 +1,7 @@
 import 'package:fic_clientes/app/util/responsive.dart';
 import 'package:fic_clientes/data/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -17,23 +18,45 @@ class _LoginScreenState extends State<LoginScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   Services services = Services();
 
+  // Variable para rastrear la visibilidad del teclado.
+  bool isKeyboardVisible = false;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+
+    // Inicializa el detector de visibilidad del teclado.
+    KeyboardVisibilityController().onChange.listen((bool visible) {
+      setState(() {
+        isKeyboardVisible = visible;
+      });
+    });
+  }
+
+  // Función para cerrar el teclado cuando se toque fuera de los campos de entrada.
+  void _closeKeyboard() {
+    FocusScope.of(context).unfocus();
   }
 
   @override
   Widget build(BuildContext context) {
     Responsive responsive = Responsive.of(context);
-    return Scaffold(
-      key: _scaffoldKey,
-      backgroundColor: Colors.white,
-      body: Container(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: ListView(
-          children: [
-            Column(
+
+    // Usa un GestureDetector para detectar toques fuera de los campos de entrada y el botón.
+    return GestureDetector(
+      onTap: _closeKeyboard,
+      child: Scaffold(
+        key: _scaffoldKey,
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(
+              left: 20,
+              right: 20,
+              // Añade espacio adicional en la parte inferior cuando el teclado está visible.
+              bottom: isKeyboardVisible ? 16 : 0,
+            ),
+            child: Column(
               children: [
                 SizedBox(height: responsive.hp(8)),
                 Image.asset(
@@ -92,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  onChanged: (value){
+                  onChanged: (value) {
                     text1 = value.length;
                     setState(() {});
                   },
@@ -138,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  onChanged: (value){
+                  onChanged: (value) {
                     text2 = value.length;
                     setState(() {});
                   },
@@ -151,21 +174,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       services.loginFic(
                           context, _scaffoldKey, numCard.text, pinCard.text);
                     } else {
-                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Por favor, ingresa un número de tarjeta y un PIN.'),
-                        backgroundColor: Colors.red,
-                        duration: Duration(seconds: 2
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                              'Por favor, ingresa un número de tarjeta y un PIN.'),
+                          backgroundColor: Colors.red,
+                          duration: Duration(seconds: 2),
                         ),
-                      ),
-                    );
+                      );
                     }
                   },
                   child: Container(
                     width: responsive.width,
                     height: responsive.hp(5.6),
                     decoration: BoxDecoration(
-                      color: (text1 != 0 && text2 != 0)?Color(0XFFB49948):Color(0XFFC4C4C4),
+                      color: (text1 != 0 && text2 != 0)
+                          ? Color(0XFFB49948)
+                          : Color(0XFFC4C4C4),
                       borderRadius: BorderRadius.circular(2.0),
                     ),
                     child: Column(
@@ -182,8 +207,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 )
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );
