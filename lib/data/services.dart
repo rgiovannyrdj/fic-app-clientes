@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Services {
-  int connectTimeout = 100000;
-  int receiveTimeout = 100000;
+  final Duration connectTimeout = const Duration(seconds: 100);
+  final Duration receiveTimeout = const Duration(seconds: 100);
   Dio dio = Dio();
   String url = "https://cervantino.2link.com.mx";
 
