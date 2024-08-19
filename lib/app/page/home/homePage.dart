@@ -106,7 +106,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       ),
                       Container(
                         width: responsive.width,
-                        height: responsive.hp(22),
+                        height: responsive.hp(60),
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0),
@@ -132,6 +132,19 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    Text('${numCardFic}',
+                                        style: TextStyle(
+                                            fontSize: responsive.dp(1.9),
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700)),
+                                    Text("Número",
+                                        style: TextStyle(
+                                            fontSize: responsive.dp(1.43),
+                                            color: Color(0XFFD9D9D9),
+                                            fontWeight: FontWeight.w400)),
+                                    SizedBox(
+                                      height: responsive.hp(1),
+                                    ),
                                     Text(
                                         '${dataHome![0]['referencia'].split('_')[0].trim()}',
                                         style: TextStyle(
@@ -204,25 +217,25 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                           fontWeight: FontWeight.w700)),
                                 ],
                               ),
-                            )
+                            ),
+                            SizedBox(
+                              height: responsive.hp(1.5),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Color(0XFFF7F5F4),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Center(
+                                child: QrImageView(
+                                  data: '${numCardFic}',
+                                  version: QrVersions.auto,
+                                  size: 200.0,
+                                ),
+                              ),
+                            ),
                           ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: responsive.hp(1.5),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Color(0XFFF7F5F4),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Center(
-                          child: QrImageView(
-                            data: '${numCardFic}',
-                            version: QrVersions.auto,
-                            size: 300.0,
-                          ),
                         ),
                       ),
                       SizedBox(
