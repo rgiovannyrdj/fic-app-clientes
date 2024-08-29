@@ -106,7 +106,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       ),
                       Container(
                         width: responsive.width,
-                        height: responsive.hp(60),
+                        height: responsive.hp(65),
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0),
